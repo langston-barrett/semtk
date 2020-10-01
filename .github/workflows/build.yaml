@@ -1,0 +1,17 @@
+name: Build
+on: [push]
+
+jobs:
+  build:
+    name: Build SemTK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - shell: bash
+        name: Build SemTK
+        run: |
+          . .env
+          # TODO: The tests currently fail in Github Actions.
+          mvn --quiet --batch-mode clean install -DskipTests
+
